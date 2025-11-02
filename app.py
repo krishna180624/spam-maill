@@ -15,24 +15,14 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 
 app = Flask(__name__)
 
-# Configure CORS to allow requests from your frontend
-CORS(app, resources={
-    r"/*": {
-        "origins": [
-            "http://localhost",
-            "http://localhost:5500",
-            "http://localhost:3000",
-            "http://127.0.0.1:5500",
-            "http://localhost:5173",
-            "http://localhost:8000",
-            "file://*"  # Allow file:// protocol for direct HTML opening
-        ],
-        "methods": ["GET", "POST", "OPTIONS"],
-        "allow_headers": ["Content-Type"]
-    }
-})
-# From your app.py snippet:
-model = joblib.load(os.path.join(os.path.dirname(__file__), 'spam_model.joblib'))
+# Configure CORS - Allow all origins for Render deployment
+CORS(app, 
+     origins="*",
+     methods=["GET", "POST", "OPTIONS"],
+     allow_headers=["Content-Type", "Accept"],
+     expose_headers=["Content-Type"],
+     supports_credentials=False)
+
 # Global variables for model and vectorizer
 model = None
 vectorizer = None
@@ -295,5 +285,4 @@ if __name__ == '__main__':
         logging.error(f"Port {port} is in use: {str(e)}")
         print(f"\n❌ Error: Port {port} is already in use!")
         print(f"💡 Try running: set PORT=5001 (Windows) or export PORT=5001 (Linux/Mac)")
-
         exit(1)
