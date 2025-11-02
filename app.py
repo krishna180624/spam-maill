@@ -31,7 +31,8 @@ CORS(app, resources={
         "allow_headers": ["Content-Type"]
     }
 })
-
+# From your app.py snippet:
+model = joblib.load(os.path.join(os.path.dirname(__file__), 'spam_model.joblib'))
 # Global variables for model and vectorizer
 model = None
 vectorizer = None
@@ -294,4 +295,5 @@ if __name__ == '__main__':
         logging.error(f"Port {port} is in use: {str(e)}")
         print(f"\n❌ Error: Port {port} is already in use!")
         print(f"💡 Try running: set PORT=5001 (Windows) or export PORT=5001 (Linux/Mac)")
+
         exit(1)
