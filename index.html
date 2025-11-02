@@ -716,10 +716,9 @@
         const confidenceFill = document.getElementById('confidenceFill');
         const welcomePopup = document.getElementById('welcomePopup');
 
-        // API endpoint
-        
-        // Change this line in your spam.html
-const API_URL = 'https://spam-maill.onrender.com'; // <--- UPDATE THIS
+        // API endpoint - UPDATE THIS WITH YOUR RENDER URL
+        const API_URL = 'https://your-app-name.onrender.com/predict';
+        // For local testing, use: 'http://localhost:5000/predict'
 
         // Create animated particles
         function createParticles() {
@@ -858,8 +857,4 @@ const API_URL = 'https://spam-maill.onrender.com'; // <--- UPDATE THIS
         });
     </script>
 </body>
-
 </html>
-
-
-
